@@ -1,5 +1,5 @@
 /*
- *  TP-LINK TL-WR840N v2/v3 / TL-WR841N/ND v9/v11 / TL-WR842N/ND v3
+ *  TP-LINK TL-WR840N v2/v3 / TL-WR841N/ND v9/v11 / TL-WR842N/ND v3 / TL-WR845N v1
  *
  *  Copyright (C) 2014 Matthias Schiffer <mschiffer@universe-factory.net>
  *  Copyright (C) 2016 Cezary Jackiewicz <cezary@eko.one.pl>
@@ -422,6 +422,8 @@ static void __init tl_wr841n_v11_setup(void)
 }
 
 MIPS_MACHINE(ATH79_MACH_TL_WR841N_V11, "TL-WR841N-v11", "TP-LINK TL-WR841N/ND v11",
+	     tl_wr841n_v11_setup);
+MIPS_MACHINE(ATH79_MACH_TL_WR845N_V1, "TL-WR845N-v1", "TP-LINK TL-WR845N v1",
 	     tl_wr841n_v11_setup);
 
 static void __init tl_wr842n_v3_setup(void)

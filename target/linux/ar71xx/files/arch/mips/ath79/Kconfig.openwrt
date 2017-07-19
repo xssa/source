@@ -1659,7 +1659,7 @@ config ATH79_MACH_TL_WR810N
 	select ATH79_DEV_WMAC
 
 config ATH79_MACH_TL_WR840N_V2
-	bool "TP-LINK TL-WR840N v2/v3 support"
+	bool "TP-LINK TL-WR840N v2/v3/TL-WR845N v1 support"
 	select SOC_QCA953X
 	select ATH79_DEV_ETH
 	select ATH79_DEV_GPIO_BUTTONS

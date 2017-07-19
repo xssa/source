@@ -906,13 +906,22 @@ define Device/tl-wr840n-v2
   IMAGE/factory-eu.bin := append-rootfs | mktplinkfw factory -C EU
 endef
 
+define Device/tl-wr840n-v2-ks
+  $(Device/tplink-8mlzma)
+  DEVICE_TITLE := TP-LINK TL-WR840N V2 KS UA
+  BOARDNAME := TL-WR840N-v2
+  DEVICE_PRIFILE := TLWR840
+  TPLINK_HWID := 0x08400002
+  TPLINK_HWREV := 0x55411509
+endef
+
 define Device/tl-wr840n-v3
   $(Device/tl-wr840n-v2)
   DEVICE_TITLE := TP-LINK TL-WR840N v3
   BOARDNAME := TL-WR840N-v3
   TPLINK_HWID := 0x08400003
 endef
-TARGET_DEVICES += tl-wr802n-v1 tl-wr802n-v2 tl-wr810n-v1 tl-wr840n-v2 tl-wr840n-v3
+TARGET_DEVICES += tl-wr802n-v1 tl-wr802n-v2 tl-wr810n-v1 tl-wr840n-v2 tl-wr840n-v2-ks tl-wr840n-v3
 
 define Device/tl-wr841-v1.5
   $(Device/tplink-4m)
@@ -1023,6 +1032,14 @@ define Device/tl-wr843nd-v1
   TPLINK_HWID := 0x08430001
 endef
 
+define Device/tl-wr845n-v1
+  $(Device/tplink-4mlzma)
+  DEVICE_TITLE := TP-LINK TL-WR845N v1
+  BOARDNAME := TL-WR845N-v1
+  DEVICE_PROFILE := TLWR841
+  TPLINK_HWID := 0x08450001
+endef
+
 define Device/tl-wr847n-v8
   $(Device/tplink-4mlzma)
   DEVICE_TITLE := TP-LINK TL-WR847N/ND v8
@@ -1030,7 +1047,7 @@ define Device/tl-wr847n-v8
   DEVICE_PROFILE := TLWR841
   TPLINK_HWID := 0x08470008
 endef
-TARGET_DEVICES += tl-wr842n-v1 tl-wr842n-v2 tl-wr842n-v3 tl-wr843nd-v1 tl-wr847n-v8
+TARGET_DEVICES += tl-wr842n-v1 tl-wr842n-v2 tl-wr842n-v3 tl-wr843nd-v1 tl-wr845n-v1 tl-wr847n-v8
 
 define Device/tl-wr902ac-v1
   DEVICE_TITLE := TP-LINK TL-WR902AC v1
