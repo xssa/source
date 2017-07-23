@@ -13,7 +13,14 @@ __target_inc=1
 DEVICE_TYPE?=router
 
 # Default packages - the really basic set
-DEFAULT_PACKAGES:=base-files libc libgcc busybox dropbear mtd uci opkg netifd fstools uclient-fetch logd
+DEFAULT_PACKAGES:=base-files libc libgcc busybox dropbear mtd uci opkg netifd fstools uclient-fetch logd \
+luci luci-app-ddns luci-app-sqm luci-app-upnp luci-proto-relay luci-proto-3g \
+kmod-usb-acm kmod-usb-serial-ipw kmod-usb-serial-option kmod-usb-serial-qualcomm kmod-usb-serial-sierrawireless kmod-usb-serial-wwan \
+kmod-usb-net-cdc-eem kmod-usb-net-cdc-ether kmod-usb-net-cdc-mbim kmod-usb-net-cdc-ncm kmod-usb-net-cdc-subset kmod-usb-net-hso kmod-usb-net-huawei-cdc-ncm kmod-usb-net-kalmia kmod-usb-net-qmi-wwan kmod-usb-net-sierrawireless \
+kmod-sched-cake openvpn-openssl wireguard \
+kmod-sit kmod-ip6-tunnel kmod-nat46 kmod-ppp kmod-mppe kmod-pptp kmod-gre kmod-pppol2tp kmod-l2tp \
+
+
 # For nas targets
 DEFAULT_PACKAGES.nas:=block-mount fdisk lsblk mdadm
 # For router targets
@@ -155,18 +162,21 @@ LINUX_RECONF_DIFF = $(call __linux_confcmd,$(filter-out $(LINUX_RECONFIG_TARGET)
 ifeq ($(DUMP),1)
   BuildTarget=$(BuildTargets/DumpCurrent)
 
-  CPU_CFLAGS = -Os -pipe
+  CPU_CFLAGS = -O2 -pipe
   ifneq ($(findstring mips,$(ARCH)),)
     ifneq ($(findstring mips64,$(ARCH)),)
       CPU_TYPE ?= mips64
     else
       CPU_TYPE ?= mips32
     endif
-    CPU_CFLAGS += -mno-branch-likely
+    CPU_CFLAGS += -mno-branch-likely -mno-mips16 -mno-interlink-compressed -msym32 -mframe-header-opt
     CPU_CFLAGS_mips32 = -mips32 -mtune=mips32
     CPU_CFLAGS_mips64 = -mips64 -mtune=mips64 -mabi=64
-    CPU_CFLAGS_24kc = -mips32r2 -mtune=24kc
-    CPU_CFLAGS_74kc = -mips32r2 -mtune=74kc
+    CPU_CFLAGS_24kc = -march=24kc
+    CPU_CFLAGS_24kec = -march=24kec
+    CPU_CFLAGS_34kc = -march=34kc
+    CPU_CFLAGS_74kc = -march=74kc
+    CPU_CFLAGS_1004kc = -march=1004kc
     CPU_CFLAGS_octeon = -march=octeon -mabi=64
   endif
   ifeq ($(ARCH),i386)

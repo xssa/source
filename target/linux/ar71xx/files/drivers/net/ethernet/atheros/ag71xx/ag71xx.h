@@ -55,11 +55,11 @@
 #define AG71XX_TX_RING_SPLIT		512
 #define AG71XX_TX_RING_DS_PER_PKT	DIV_ROUND_UP(AG71XX_TX_MTU_LEN, \
 						     AG71XX_TX_RING_SPLIT)
-#define AG71XX_TX_RING_SIZE_DEFAULT	128
-#define AG71XX_RX_RING_SIZE_DEFAULT	256
+#define AG71XX_TX_RING_SIZE_DEFAULT	256
+#define AG71XX_RX_RING_SIZE_DEFAULT	512
 
-#define AG71XX_TX_RING_SIZE_MAX		128
-#define AG71XX_RX_RING_SIZE_MAX		256
+#define AG71XX_TX_RING_SIZE_MAX		256
+#define AG71XX_RX_RING_SIZE_MAX		512
 
 #ifdef CONFIG_AG71XX_DEBUG
 #define DBG(fmt, args...)	pr_debug(fmt, ## args)
@@ -156,7 +156,7 @@ struct ag71xx {
 	struct napi_struct	napi;
 	u32			msg_enable;
 
-	struct ag71xx_desc	*stop_desc;
+	struct ag71xx_desc	*stop_desc __attribute__((aligned(4)));
 	dma_addr_t		stop_desc_dma;
 
 	struct ag71xx_ring	rx_ring;

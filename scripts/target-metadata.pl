@@ -203,7 +203,7 @@ endchoice
 
 choice
 	prompt "Target Profile"
-	default TARGET_MULTI_PROFILE if BUILDBOT
+	default TARGET_ar71xx_generic_DEVICE_tl-wr1043nd-v1
 
 EOF
 	foreach my $target (@target) {

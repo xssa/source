@@ -1,0 +1,36 @@
+--- a/feeds/luci/modules/luci-mod-admin-full/luasrc/model/cbi/admin_network/dhcp.lua
++++ b/feeds/luci/modules/luci-mod-admin-full/luasrc/model/cbi/admin_network/dhcp.lua
+@@ -120,6 +120,9 @@ s:taboption("advanced", Flag, "strictord
+ 	translate("<abbr title=\"Domain Name System\">DNS</abbr> servers will be queried in the " ..
+ 		"order of the resolvfile")).optional = true
+ 
++s:taboption("advanced", Flag, "allservers",
++	translate("All Servers"),
++	translate("Query all available upstream <abbr title=\"Domain Name System\">DNS</abbr> servers")).optional = true
+ 
+ bn = s:taboption("advanced", DynamicList, "bogusnxdomain", translate("Bogus NX Domain Override"),
+ 	translate("List of hosts that supply bogus NX domain results"))
+@@ -199,7 +202,7 @@ em = s:taboption("advanced", Value, "edn
+ 
+ em.optional = true
+ em.datatype = "uinteger"
+-em.placeholder = 1280
++em.placeholder = 4096
+ 
+ 
+ cq = s:taboption("advanced", Value, "dnsforwardmax",
+@@ -210,6 +213,13 @@ cq.optional = true
+ cq.datatype = "uinteger"
+ cq.placeholder = 150
+ 
++cs = s:taboption("advanced", Value, "cachesize",
++	translate("<abbr title=\"Domain Name System\">DNS</abbr> Cache size"),
++	translate("Set size of DNS Cache"))
++
++cs.optional = true
++cs.datatype = "uinteger"
++cs.placeholder = 150
+ 
+ s:taboption("tftp", Flag, "enable_tftp",
+ 	translate("Enable TFTP server")).optional = true
+

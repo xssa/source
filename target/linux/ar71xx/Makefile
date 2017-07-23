@@ -11,6 +11,7 @@ BOARD:=ar71xx
 BOARDNAME:=Atheros AR7xxx/AR9xxx
 FEATURES:=
 CPU_TYPE:=24kc
+CPU_SUBTYPE:=
 SUBTARGETS:=generic nand mikrotik
 
 KERNEL_PATCHVER:=4.4
@@ -19,6 +20,6 @@ include $(INCLUDE_DIR)/target.mk
 
 DEFAULT_PACKAGES += \
 	kmod-gpio-button-hotplug swconfig \
-	kmod-ath9k wpad-mini uboot-envtools
+	kmod-ath9k wpad
 
 $(eval $(call BuildTarget))
