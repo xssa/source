@@ -23,6 +23,7 @@ get_status_led() {
 	antminer-s1|\
 	antminer-s3|\
 	antminer-r1|\
+	eap115|\
 	eap120|\
 	minibox-v1|\
 	som9331|\

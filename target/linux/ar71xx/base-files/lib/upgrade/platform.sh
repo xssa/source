@@ -543,6 +543,7 @@ platform_check_image() {
 		;;
 	cpe210|\
 	cpe510|\
+	eap115|\
 	eap120|\
 	wbs210|\
 	wbs510)
