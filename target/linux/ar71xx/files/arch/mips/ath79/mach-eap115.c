@@ -69,7 +69,8 @@ static struct gpio_keys_button eap115_gpio_keys[] __initdata = {
 
 static void __init eap_setup(u8 *mac)
 {
-	ath79_device_reset_clear(QCA953X_RESET_ETH_SWITCH_ANALOG);
+	ath79_device_reset_clear(/*0xc03300); QCA953X_RESET_GE1_MDIO | QCA953X_RESET_GE0_MAC \
+		| QCA953X_RESET_ETH_SWITCH | */QCA953X_RESET_ETH_SWITCH_ANALOG);
 	ath79_register_leds_gpio(-1, ARRAY_SIZE(eap115_leds_gpio),
 				 eap115_leds_gpio);
 
