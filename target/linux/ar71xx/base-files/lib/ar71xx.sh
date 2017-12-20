@@ -600,6 +600,10 @@ ar71xx_board_detect() {
 	*E2100L)
 		name="e2100l"
 		;;
+	*"EAP115")
+		name="eap115"
+		tplink_pharos_board_detect
+		;;
 	*"EAP120")
 		name="eap120"
 		tplink_pharos_board_detect
