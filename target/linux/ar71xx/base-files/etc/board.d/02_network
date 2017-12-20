@@ -67,7 +67,6 @@ ar71xx_setup_interfaces()
 	cap4200ag|\
 	cf-e380ac-v1|\
 	cf-e380ac-v2|\
-	eap115|\
 	eap120|\
 	eap300v2|\
 	eap7660d|\
@@ -124,6 +123,7 @@ ar71xx_setup_interfaces()
 	alfa-ap96|\
 	alfa-nx|\
 	dr344|\
+	eap115|\
 	gl-ar150|\
 	gl-ar300m|\
 	gl-domino|\
