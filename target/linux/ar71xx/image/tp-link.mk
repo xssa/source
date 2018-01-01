@@ -45,6 +45,14 @@ define Build/mktplinkfw-kernel
 	@mv $@.new $@
 endef
 
+define Build/uImageArcher
+        mkimage -A $(LINUX_KARCH) \
+                -O linux -T kernel \
+                -C $(1) -a $(KERNEL_LOADADDR) -e $(if $(KERNEL_ENTRY),$(KERNEL_ENTRY),$(KERNEL_LOADADDR)) \
+                -n '$(call toupper,$(LINUX_KARCH)) LEDE Linux-$(LINUX_VERSION)' -d $@ $@.new
+        @mv $@.new $@
+endef
+
 define Device/tplink
   TPLINK_HWREV := 0x1
   TPLINK_HEADER_VERSION := 1
@@ -835,6 +843,21 @@ define Device/tl-wr1043nd-v4
     IMAGE/factory.bin := append-rootfs | tplink-safeloader factory
 endef
 TARGET_DEVICES += tl-wr1043nd-v1 tl-wr1043nd-v2 tl-wr1043nd-v3 tl-wr1043nd-v4
+
+define Device/tl-wr942n-v1
+  DEVICE_TITLE := TP-LINK TL-WR942N v1
+  DEVICE_PACKAGES := kmod-usb-core kmod-usb2 kmod-usb-ledtrig-usbport
+  BOARDNAME := TL-WR942N-V1
+  TPLINK_BOARD_NAME := TL-WR942N
+  DEVICE_PROFILE := TLWR942NV1
+  IMAGE_SIZE := 14464k
+  KERNEL := kernel-bin | patch-cmdline | lzma | uImageArcher lzma
+  IMAGES := sysupgrade.bin factory.bin
+  IMAGE/sysupgrade.bin := append-rootfs | tplink-safeloader sysupgrade
+  IMAGE/factory.bin := append-rootfs | tplink-safeloader factory
+  MTDPARTS := spi0.0:128k(u-boot)ro,1344k(kernel),13120k(rootfs),64k(product-info)ro,64k(partition-table)ro,64k(soft-version)ro,64k(support-list)ro,640k(config)ro,576k(certificate)ro,64k(usb-config)ro,128k(log)ro,64k(radio-bk)ro,64k(ART)ro,14464k@0x20000(firmware)
+endef
+TARGET_DEVICES += tl-wr942n-v1
 
 define Device/tl-wr2543-v1
     $(Device/tplink-8mlzma)

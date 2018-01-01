@@ -929,6 +929,9 @@ ar71xx_board_detect() {
 	*TEW-823DRU)
 		name="tew-823dru"
 		;;
+	*"TL-WR942N v1")
+		name="tl-wr942n-v1"
+		;;
 	*"TL-WR1041N v2")
 		name="tl-wr1041n-v2"
 		;;

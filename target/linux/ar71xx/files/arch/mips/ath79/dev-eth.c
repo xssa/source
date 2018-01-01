@@ -814,6 +814,27 @@ void __init ath79_setup_qca955x_eth_cfg(u32 mask)
 	iounmap(base);
 }
 
+void __init ath79_setup_qca956x_eth_cfg(u32 mask)
+{
+	void __iomem *base;
+	u32 t;
+
+	base = ioremap(QCA956X_GMAC_BASE, QCA956X_GMAC_SIZE);
+
+	t = __raw_readl(base + QCA956X_GMAC_REG_ETH_CFG);
+
+	t &= ~(QCA956X_ETH_CFG_SW_ONLY_MODE |
+		QCA956X_ETH_CFG_SW_PHY_SWAP);
+
+	t |= mask;
+
+	__raw_writel(t, base + QCA956X_GMAC_REG_ETH_CFG);
+	/* flush write */
+	__raw_readl(base + QCA956X_GMAC_REG_ETH_CFG);
+
+	iounmap(base);
+}
+
 static int ath79_eth_instance __initdata;
 void __init ath79_register_eth(unsigned int id)
 {
