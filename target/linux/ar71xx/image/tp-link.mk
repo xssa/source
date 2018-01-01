@@ -855,7 +855,7 @@ define Device/tl-wr942n-v1
   IMAGES := sysupgrade.bin factory.bin
   IMAGE/sysupgrade.bin := append-rootfs | tplink-safeloader sysupgrade
   IMAGE/factory.bin := append-rootfs | tplink-safeloader factory
-  MTDPARTS := spi0.0:128k(u-boot)ro,1344k(kernel),13120k(rootfs),64k(product-info)ro,64k(partition-table)ro,64k(soft-version)ro,64k(support-list)ro,640k(config)ro,576k(certificate)ro,64k(usb-config)ro,128k(log)ro,64k(radio-bk)ro,64k(ART)ro,14464k@0x20000(firmware)
+  MTDPARTS := spi0.0:128k(u-boot)ro,14464k(firmware),64k(product-info)ro,64k(partition-table)ro,256k(oem-config)ro,1344k(oem-vars)ro,64k(ART)ro
 endef
 TARGET_DEVICES += tl-wr942n-v1
 
